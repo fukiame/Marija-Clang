@@ -41,6 +41,7 @@ send_msg "gh $RUN_NUM: building LLVM"
     --ref "$BRANCH" \
     --shallow-clone \
     --targets AArch64 ARM X86 \
+    --lto thin \
     --clang-vendor-string "Marija" \
     --lld-vendor-string "Lilith"
 
