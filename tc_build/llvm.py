@@ -549,11 +549,8 @@ class LLVMSourceManager:
         git_clone = ['git', 'clone']
         if shallow:
             git_clone.append('--depth=1')
-            git_clone.append('--no-progress')
             if ref != 'main':
                 git_clone.append('--no-single-branch')
-            else:
-                git_clone.append('--single-branch')
         git_clone += ['https://github.com/llvm/llvm-project', self.repo]
 
         subprocess.run(git_clone, check=True)
