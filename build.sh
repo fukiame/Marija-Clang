@@ -162,5 +162,7 @@ while [ "$failed" == "y" ] && [ "$attempts" -le "10" ]; do
     attempts=$(( $attempts + 1 ))
 done
 
+[ "$failed" == "y" ] && { send_msg "gh $RUN_NUM: failed in $((SECONDS / 60))m and $((SECONDS % 60))s && exit 1 ; } || :
+
 # Send message to telegram
 send_msg "gh $RUN_NUM: done in $((SECONDS / 60))m and $((SECONDS % 60))s%nlgh $RUN_NUM: clang version: $clang_version%nlgh $RUN_NUM: binutils version: $binutils_version%nlgh $RUN_NUM: llvm commit: $llvm_commit_url"
