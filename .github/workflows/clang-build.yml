@@ -11,7 +11,7 @@ on:
 env:
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
   CHAT_ID: ${{ secrets.CHAT_ID }}
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   RUN_NUM: ${{ github.run_number }}_${{ github.run_attempt }}
 
 jobs:

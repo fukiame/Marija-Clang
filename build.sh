@@ -3,7 +3,7 @@
 
 # Environment checker
 echo "Checking environment ..."
-for environment in BOT_TOKEN CHAT_ID GH_TOKEN BRANCH; do
+for environment in BOT_TOKEN CHAT_ID GITHUB_TOKEN BRANCH; do
     [ -z "${!environment}" ] && {
         echo "$environment is not set, bailing out"
         exit 1
@@ -115,14 +115,12 @@ git tag -l | grep "$tags" || overwrite=n
 failed=n
 if [ "$overwrite" == "y" ]; then
     ./github-release edit \
-        --security-token "$GH_TOKEN" \
         --user "$GH_USER" \
         --repo "$GH_REPO" \
         --tag "$tags" \
         --description "$(cat "$HOME_DIR"/install/README.md)"
 
     ./github-release upload \
-        --security-token "$GH_TOKEN" \
         --user "$GH_USER" \
         --repo "$GH_REPO" \
         --tag "$tags" \
@@ -131,14 +129,12 @@ if [ "$overwrite" == "y" ]; then
         --replace || failed=y
 else
     ./github-release release \
-        --security-token "$GH_TOKEN" \
         --user "$GH_USER" \
         --repo "$GH_REPO" \
         --tag "$tags" \
         --description "$(cat "$HOME_DIR"/install/README.md)"
 
     ./github-release upload \
-        --security-token "$GH_TOKEN" \
         --user "$GH_USER" \
         --repo "$GH_REPO" \
         --tag "$tags" \
@@ -152,7 +148,6 @@ while [ "$failed" == "y" ] && [ "$attempts" -le "10" ]; do
     failed=n
     echo "upload failed, trying again..."
     ./github-release upload \
-        --security-token "$GH_TOKEN" \
         --user "$GH_USER" \
         --repo "$GH_REPO" \
         --tag "$tags" \
