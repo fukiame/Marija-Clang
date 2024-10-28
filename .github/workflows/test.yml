@@ -1,0 +1,13 @@
+name: build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: perf sampling test for BOLT ig
+    runs-on: ubuntu-22.04
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+    - name: yes
+      run: perf record --branch-filter any,u --event cycles:u --output /dev/null -- sleep 1
