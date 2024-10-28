@@ -10,4 +10,6 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: yes
-      run: perf record --branch-filter any,u --event cycles:u --output /dev/null -- sleep 1
+      run: |
+        echo -1 | sudo tee /proc/sys/kernel/perf_event_paranoid
+        perf record --branch-filter any,u --event cycles:u --output /dev/null -- sleep 1
