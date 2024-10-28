@@ -146,8 +146,9 @@ else
         --file "$HOME_DIR/$file" || failed=y
 fi
 
+attempts = 0
 # Handle uploader if upload failed
-while [ "$failed" == "y" ]; do
+while [ "$failed" == "y" ] && [ "$attempts" -le "10" ]; do
     failed=n
     echo "upload failed, trying again..."
     ./github-release upload \
@@ -158,6 +159,7 @@ while [ "$failed" == "y" ]; do
         --name "$file" \
         --file "$HOME_DIR/$file" \
         --replace || failed=y
+    attempts=$(( $attempts + 1 ))
 done
 
 # Send message to telegram
