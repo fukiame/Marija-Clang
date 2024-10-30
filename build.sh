@@ -65,7 +65,7 @@ send_msg "gh $RUN_NUM: building binutils"
 
 # Remove unused products
 rm -fr install/include
-rm -f install/lib/*.a install/lib/*.la
+rm -f install/lib/*.a install/lib/*.la install/lib/clang/*/lib/*/*.a install/lib/clang/*/lib/*/*.syms
 
 # Strips remaining products
 for f in $(find install -type f -exec file {} \; | grep 'not stripped' | awk '{print $1}'); do
