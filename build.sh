@@ -21,10 +21,6 @@ send_file() {
     bash "$HOME_DIR/tg_utils.sh" up "$1" "$2"
 }
 
-# Git config
-git config --global user.name "fukiame"
-git config --global user.email "fukiame@proton.me"
-
 GH_USER=fukiame
 GH_REPO=Marija-Clang
 
