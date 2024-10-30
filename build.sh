@@ -42,6 +42,7 @@ send_msg "gh $RUN_NUM: building LLVM"
     --shallow-clone \
     --targets AArch64 ARM X86 \
     --lto thin \
+    --pgo kernel-defconfig-slim \
     --clang-vendor-string "Marija" \
     --lld-vendor-string "Lilith"
 
